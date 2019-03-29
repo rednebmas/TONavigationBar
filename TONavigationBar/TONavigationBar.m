@@ -65,7 +65,7 @@
 - (void)commonInit {
     _backgroundView = [[UIVisualEffectView alloc] initWithEffect:nil];
     _separatorView = [[UIView alloc] initWithFrame:CGRectZero];
-    _separatorHeight = 1.0f / [UIScreen mainScreen].nativeScale;
+    _separatorHeight = 1.0f;
 }
 
 #pragma mark - Subview Handling -
@@ -115,7 +115,7 @@
     
     // Place the separator view at the bottom of the background view
     frame = self.bounds;
-    frame.origin.y = frame.size.height - _separatorHeight;
+    frame.origin.y = frame.size.height - _separatorHeight / 2;
     frame.size.height = _separatorHeight;
     self.separatorView.frame = frame;
 
