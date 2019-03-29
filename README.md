@@ -103,6 +103,14 @@ UINavigationController *navigationController = [[UINavigationController alloc] i
 
 ```
 
+#### Changing the separator color
+
+```objc
+#import "TOHeaderImageView.h"
+
+self.navigationController.to_navigationBar.separatorColor = [UIColor redColor];
+```
+
 
 ## Architecture of `TONavigationBar`
 

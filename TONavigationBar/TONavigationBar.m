@@ -48,9 +48,7 @@
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     if (self = [super initWithCoder:coder]) {
-        _backgroundView = [[UIVisualEffectView alloc] initWithEffect:nil];
-        _separatorView = [[UIView alloc] initWithFrame:CGRectZero];
-        _separatorHeight = 1.0f / [UIScreen mainScreen].nativeScale;
+        [self commonInit];
     }
     return self;
 }
@@ -58,12 +56,16 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        _backgroundView = [[UIVisualEffectView alloc] initWithEffect:nil];
-        _separatorView = [[UIView alloc] initWithFrame:CGRectZero];
-        _separatorHeight = 1.0f / [UIScreen mainScreen].nativeScale;
+        [self commonInit];
     }
     
     return self;
+}
+
+- (void)commonInit {
+    _backgroundView = [[UIVisualEffectView alloc] initWithEffect:nil];
+    _separatorView = [[UIView alloc] initWithFrame:CGRectZero];
+    _separatorHeight = 1.0f / [UIScreen mainScreen].nativeScale;
 }
 
 #pragma mark - Subview Handling -
@@ -151,8 +153,12 @@
     }
     
     // Configure the separator color
-    CGFloat greyColor = darkMode ? 0.4f : 0.75f;
-    self.separatorView.backgroundColor = [UIColor colorWithWhite:greyColor alpha:1.0f];
+    if (self.separatorColor == nil) {
+        CGFloat greyColor = darkMode ? 0.4f : 0.75f;
+        self.separatorView.backgroundColor = [UIColor colorWithWhite:greyColor alpha:1.0f];;
+    } else {
+        self.separatorView.backgroundColor = self.separatorColor;
+    }
 }
 
 - (void)updateBackgroundVisibilityForScrollView
@@ -365,6 +371,11 @@
     if (_targetScrollView != nil) {
         [_targetScrollView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
     }
+}
+
+- (void)setSeparatorColor:(UIColor *)separatorColor {
+    _separatorColor = separatorColor;
+    self.separatorView.backgroundColor = separatorColor;
 }
 
 @end

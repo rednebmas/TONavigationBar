@@ -55,6 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) CGFloat scrollViewMinimumOffset;
 
+/**
+ The color of the separator view.
+ */
+@property (nonatomic, strong) UIColor *separatorColor;
 
 /**
  Shows/hides the bar background views, and the title label. Can be optionally animated
