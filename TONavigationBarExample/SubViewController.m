@@ -22,9 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Firewatch";
-    self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeNever;
-    self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    
+    if (@available(iOS 11.0, *)) {
+        self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeNever;
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+
     // Set up the header view
     self.headerView = [[TOHeaderImageView alloc] initWithImage:[UIImage imageNamed:@"Firewatch.jpg"] height:200.0f];
     self.headerView.shadowHidden = NO;
